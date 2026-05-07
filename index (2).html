@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Uganda Adventure Hub — DOM Project</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            syne: ['Syne', 'sans-serif'],
+            dm: ['DM Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+
+  </style>
+</head>
+
+<body 
+  class="bg-[#0a0a0f] text-[#e8e8f0] font-dm overflow-x-hidden transition-all duration-300 text-sm sm:text-base md:text-lg
+  data-[theme=light]:bg-[#f4f4fb] 
+  data-[theme=light]:text-[#1a1a1a]">
+
+<!-- NAVBAR -->
+<nav class="fixed top-0 left-0 right-0 bg-black/60 backdrop-blur-md z-50 flex flex-col sm:flex-row justify-between items-center px-4 sm:px-6 md:px-8 py-3 sm:py-4 border-b border-white/10 gap-3 sm:gap-0">
+<h1 class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-[#6143a5] to-[#3a434b] bg-clip-text text-transparent">
+  Uganda Adventure Hub
+</h1>
+
+  <button id="menuBtn" class="md:hidden text-2xl sm:text-3xl p-2 rounded hover:bg-white/10 transition">
+  ☰
+</button>
+
+  <ul id="navMenu" class="hidden md:flex flex-col md:flex-row gap-4 md:gap-6 text-sm md:text-base items-start md:items-center">
+    <li class="nav-link cursor-pointer text-[#abb0db] text-sm md:text-base py-2 md:py-0 hover:text-white transition">
+  Home
+</li>
+
+    <li class="relative">
+     <button id="dropBtn" class="text-sm md:text-base px-2 py-2 md:py-1 cursor-pointer hover:text-white transition flex items-center gap-1">
+  Activities <span class="text-xs">▼</span>
+</button>
+      <ul id="dropdown" class="hidden absolute left-0 mt-2 w-40 sm:w-44 md:w-48 bg-white text-black rounded-md shadow-lg py-2 text-sm md:text-base z-50">
+        <li class="p-2 text-sm md:text-base cursor-pointer hover:bg-gray-100 transition">
+  Travel
+</li>
+        <li class="p-2 text-sm md:text-base cursor-pointer hover:bg-gray-100 transition">
+  Food
+</li>
+        <li class="p-2 text-sm md:text-base cursor-pointer hover:bg-gray-100 transition">
+  Nature
+</li>
+      </ul>
+    </li>
+
+    <li class="nav-link cursor-pointer text-sm md:text-base py-2 md:py-0 text-[#abb0db] hover:text-white transition">
+  List
+</li>
+
+    <li>
+     <button id="themeBtn" class="px-2 sm:px-3 py-1 sm:py-2 border rounded text-xs sm:text-sm md:text-base flex items-center gap-1 hover:bg-white/10 transition">
+  🌙 Dark
+</button>
+    </li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="relative min-h-screen flex flex-col md:flex-row items-center justify-center pt-16 sm:pt-20 md:pt-24 px-4 sm:px-6 md:px-10 lg:px-16">
+
+  <img src="/image/background.jpg" class="absolute inset-0 w-full h-full object-cover object-center sm:object-center" />
+ <div class="absolute inset-0 bg-[rgba(105,121,118,0.5)] sm:bg-[rgba(105,121,118,0.3)] md:bg-[rgba(105,121,118,0.2)]"></div>
+
+ <div class="relative text-center max-w-3xl mx-auto px-4 sm:px-6 md:px-8 lg:px-0">
+
+   <h2 class="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-bold font-syne mb-4 leading-tight">
+  Adventure Starts in <span class="gradient-text">Uganda</span>
+</h2>
+
+    <p id="heroText" class="text-gray-300 mb-3 text-base sm:text-lg md:text-xl leading-relaxed">
+  Uganda is the Pearl of Africa 🇺🇬
+</p>
+
+   <button id="changeTextBtn" class="bg-green-500 text-black px-4 sm:px-5 py-2 sm:py-2.5 text-sm sm:text-base rounded-md hover:bg-green-600 active:scale-95 transition">
+  Change Text
+</button>
+<button id="resetBtn" class="border px-4 sm:px-5 py-2 sm:py-2.5 text-sm sm:text-base rounded-md ml-2 hover:bg-white/10 active:scale-95 transition">
+  Reset
+</button>
+
+  </div>
+</section>
+
+<!-- INPUT -->
+<section class="p-4 sm:p-6 md:p-8">
+  <h2 class="text-base sm:text-lg md:text-xl lg:text-2xl mb-3 font-bold leading-snug">
+    Share Your Uganda Experience
+  </h2>
+</section>
+<section class="p-4 sm:p-6 md:p-8 max-w-3xl mx-auto">
+
+  <input id="inputBox"
+    class="p-2 sm:p-3 text-black w-full md:w-2/3 lg:w-1/2 rounded-md"
+    placeholder="Write your experience in Uganda" />
+
+  <button id="showBtn"
+    class="bg-green-500 text-black px-4 sm:px-5 py-2 sm:py-2.5 mt-3 text-sm sm:text-base rounded-md hover:bg-green-600 active:scale-95 transition">
+    Post Comment
+  </button>
+
+  <p id="output"
+    class="mt-3 text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed">
+  </p>
+
+</section>
+
+<!-- SEARCH -->
+<section class="p-4 sm:p-6 md:p-8 max-w-3xl mx-auto">
+  
+  <input id="search"
+    class="p-2 sm:p-3 text-black w-full md:w-2/3 lg:w-1/2 rounded-md"
+    placeholder="Search list..." />
+
+  <button id="searchBtn"
+    class="bg-green-500 text-black px-4 sm:px-5 py-2 sm:py-2.5 mt-3 text-sm sm:text-base rounded-md hover:bg-green-600 active:scale-95 transition">
+    Search
+  </button>
+
+  <p id="searchResult" class="mt-3 text-sm sm:text-base text-gray-300"></p>
+
+  <ul id="ugandaFacts"
+    class="mt-4 space-y-2 list-disc pl-6 w-full md:w-2/3 lg:w-1/2 text-sm sm:text-base text-gray-200">
+    <li>Uganda is the Pearl of Africa</li>
+    <li>Kampala is the capital city</li>
+    <li>Home of mountain gorillas</li>
+    <li>Nile starts in Jinja</li>
+    <li>Lake Victoria is largest in Africa</li>
+  </ul>
+
+</section>
+
+<!-- CARDS -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 p-4 sm:p-6 md:p-8">
+
+  <!-- Card -->
+  <div class="card bg-white/10 p-3 sm:p-4 rounded-lg hover:scale-[1.02] transition">
+
+    <img 
+      src="/image/gorilla.jpg"
+      class="w-full h-40 sm:h-44 md:h-48 object-cover rounded-lg mb-2"
+    />
+
+    <h3 class="text-base sm:text-lg font-semibold">
+      Gorilla Trekking
+    </h3>
+
+    <p class="text-sm text-gray-300 leading-relaxed">
+      Trek through Bwindi Forest and experience close encounters with endangered mountain gorillas in their natural habitat.
+    </p>
+
+    <button class="cardBtn bg-green-500 text-black px-3 sm:px-4 py-1.5 sm:py-2 mt-3 text-sm sm:text-base rounded-md hover:bg-green-600 active:scale-95 transition">
+      Add
+    </button>
+
+  </div>
+
+  <!-- Card 2 -->
+  <div class="card bg-white/10 p-3 sm:p-4 rounded-lg hover:scale-[1.02] transition">
+
+    <img 
+      src="/image/Murchison Falls.jpg"
+      class="w-full h-40 sm:h-44 md:h-48 object-cover rounded-lg mb-2"
+    />
+
+    <h3 class="text-base sm:text-lg font-semibold">
+      Murchison Falls
+    </h3>
+
+    <p class="text-sm text-gray-300 leading-relaxed">
+      Watch the Nile force its way through a narrow gorge creating the most powerful waterfall in Uganda.
+    </p>
+
+    <button class="cardBtn bg-green-500 text-black px-3 sm:px-4 py-1.5 sm:py-2 mt-3 text-sm sm:text-base rounded-md hover:bg-green-600 active:scale-95 transition">
+      Add
+    </button>
+
+  </div>
+
+  <!-- Card 3 -->
+  <div class="card bg-white/10 p-3 sm:p-4 rounded-lg hover:scale-[1.02] transition">
+
+    <img 
+      src="/image/Lake Bunyonyi.jpg"
+      class="w-full h-40 sm:h-44 md:h-48 object-cover rounded-lg mb-2"
+    />
+
+    <h3 class="text-base sm:text-lg font-semibold">
+      Lake Bunyonyi
+    </h3>
+
+    <p class="text-sm text-gray-300 leading-relaxed">
+      Enjoy peaceful canoe rides on one of Africa’s most beautiful and deepest lakes surrounded by green hills.
+    </p>
+
+    <button class="cardBtn bg-green-500 text-black px-3 sm:px-4 py-1.5 sm:py-2 mt-3 text-sm sm:text-base rounded-md hover:bg-green-600 active:scale-95 transition">
+      Add
+    </button>
+
+  </div>
+
+  <!-- Card 4 -->
+  <div class="card bg-white/10 p-3 sm:p-4 rounded-lg hover:scale-[1.02] transition">
+
+    <img 
+      src="/image/Kampala City.jpg"
+      class="w-full h-40 sm:h-44 md:h-48 object-cover rounded-lg mb-2"
+    />
+
+    <h3 class="text-base sm:text-lg font-semibold">
+      Kampala City
+    </h3>
+
+    <p class="text-sm text-gray-300 leading-relaxed">
+      Discover Uganda’s vibrant capital full of culture, nightlife, markets, and modern city life.
+    </p>
+
+    <button class="cardBtn bg-green-500 text-black px-3 sm:px-4 py-1.5 sm:py-2 mt-3 text-sm sm:text-base rounded-md hover:bg-green-600 active:scale-95 transition">
+      Add
+    </button>
+
+  </div>
+
+</div>
+
+<!-- LIST -->
+<section class="p-4 sm:p-6 md:p-8 max-w-3xl mx-auto space-y-4">
+
+  <input id="listInput"
+    class="p-2 sm:p-3 text-black w-full rounded-md"
+    placeholder="Add item..." />
+
+  <button id="addBtn"
+    class="bg-green-500 text-black px-4 sm:px-5 py-2 sm:py-2.5 text-sm sm:text-base rounded-md hover:bg-green-600 active:scale-95 transition">
+    Add
+  </button>
+
+  <!-- List -->
+  <ul id="list"
+    class="mt-4 space-y-2 list-disc pl-6 text-sm sm:text-base text-gray-200">
+  </ul>
+
+</section>
+<!-- FOOTER -->
+<footer class="text-center p-4 sm:p-6 md:p-8 bg-black mt-10 border-t border-white/10 text-sm sm:text-base text-gray-400">
+  <p>UMWARI DOM ASSIGNMENT © 2026</p>
+</footer>
+
+<script>
+
+//* NAV */
+const links = document.querySelectorAll(".nav-link");
+const navMenu = document.getElementById("navMenu");
+
+links.forEach(link => {
+  link.addEventListener("click", () => {
+
+    links.forEach(l => l.classList.remove("active"));
+    link.classList.add("active");
+
+    if (navMenu) {
+      navMenu.classList.add("hidden");
+    }
+
+  });
+});
+
+const dropBtn = document.getElementById("dropBtn");
+const dropdown = document.getElementById("dropdown");
+
+dropBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  dropdown.classList.toggle("hidden");
+});
+
+document.addEventListener("click", () => {
+  dropdown.classList.add("hidden");
+});
+
+const menuBtn = document.getElementById("menuBtn");
+
+// FIXED: removed duplicate navMenu declaration here
+menuBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  navMenu.classList.toggle("hidden");
+});
+
+document.addEventListener("click", () => {
+  navMenu.classList.add("hidden");
+});
+
+
+/* TEXT */
+const changeBtn = document.getElementById("changeTextBtn");
+const heroText = document.getElementById("heroText");
+
+const originalText = heroText.textContent;
+
+changeBtn.addEventListener("click", () => {
+  heroText.textContent =
+    heroText.textContent === originalText
+      ? "Uganda is full of adventure!"
+      : originalText;
+});
+
+const resetBtn = document.getElementById("resetBtn");
+
+const defaultText = "Uganda is the Pearl of Africa 🇺🇬";
+
+resetBtn.addEventListener("click", () => {
+  heroText.textContent = defaultText;
+});
+
+
+/* INPUT */
+const showBtn = document.getElementById("showBtn");
+const inputBox = document.getElementById("inputBox");
+const output = document.getElementById("output");
+
+showBtn.addEventListener("click", () => {
+  output.textContent = inputBox.value;
+});
+
+
+/* LIST */
+const list = document.getElementById("list");
+const input = document.getElementById("listInput");
+const addBtn = document.getElementById("addBtn");
+
+addBtn.addEventListener("click", () => {
+  const value = input.value.trim();
+  if (!value) return;
+
+  const li = document.createElement("li");
+  li.textContent = value;
+
+  li.addEventListener("click", () => li.remove());
+
+  list.appendChild(li);
+  input.value = "";
+});
+
+
+/* SEARCH */
+const searchInput = document.getElementById("search");
+const searchBtn = document.getElementById("searchBtn");
+const searchResult = document.getElementById("searchResult");
+
+const items = document.querySelectorAll("#ugandaFacts li, #list li, .card");
+
+searchBtn.addEventListener("click", () => {
+  const value = searchInput.value.toLowerCase().trim();
+
+  searchResult.textContent = value
+    ? `You searched for: "${value}"`
+    : "Please type something to search";
+});
+
+searchInput.addEventListener("input", function () {
+  const value = this.value.toLowerCase().trim();
+
+  items.forEach(item => {
+    const text = item.textContent.toLowerCase();
+    item.style.display = text.includes(value) ? "" : "none";
+  });
+});
+
+
+/* CARDS */
+const list2 = document.getElementById("list"); // renamed to avoid duplicate
+
+document.querySelectorAll(".cardBtn").forEach(btn => {
+  btn.addEventListener("click", () => {
+
+    const card = btn.closest(".card");
+    const title = card.querySelector("h3").textContent;
+
+    const li = document.createElement("li");
+    li.textContent = title;
+
+    li.addEventListener("click", () => li.remove());
+
+    list2.appendChild(li);
+  });
+});
+
+
+/* THEME */
+const themeBtn = document.getElementById("themeBtn");
+
+themeBtn.onclick = () => {
+  const current = document.body.getAttribute("data-theme");
+
+  if (current === "dark") {
+    document.body.setAttribute("data-theme", "light");
+    themeBtn.textContent = "☀️ Light";
+  } else {
+    document.body.setAttribute("data-theme", "dark");
+    themeBtn.textContent = "🌙 Dark";
+  }
+};
+
+</script>
+
+</body>
+</html>
